@@ -17,6 +17,9 @@
 # Recordings can get excessive in size
 /[Rr]ecordings/
 
+#fuck this file in particular
+/FruitsOfYourLabor2D/Library/PackageCache/com.unity.burst@1.6.5/.Runtime/hostmac/lld
+
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
 
