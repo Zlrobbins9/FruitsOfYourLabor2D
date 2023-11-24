@@ -6,9 +6,10 @@ public class appleAngler : MonoBehaviour
 {
     float curAngle = 0;
     int launchCooldown = 0; //keeps track of how long has passed since the ball stopped moving
-    bool rotatingLeft = true; 
+    bool rotatingLeft = true; //is the arrow moving left in part 1
+    bool growing = true; //is the arrpw growing in part 2
     public int aimMode = 0; //0 = inactive, 1 = rotation, 2 = power
-    public int forceToUse = 200;
+    public float forceToUse = 200;
     Rigidbody2D rb2D;
     void Start()
     {
@@ -35,6 +36,7 @@ public class appleAngler : MonoBehaviour
                     launchCooldown = 0;
                     aimMode = 1;
                     transform.eulerAngles = new Vector3(0, 0, 0.000197947f);
+                    transform.localScale = new Vector3(1,1,1);
                 }
                 //TODO: add movement here
                 GetComponent<SpriteRenderer>().enabled = false;
@@ -48,7 +50,6 @@ public class appleAngler : MonoBehaviour
 
                 if (rotatingLeft)
                 {
-                    
                     transform.eulerAngles += new Vector3(0, 0, 0.25f);
                     if (transform.eulerAngles.z >= 180)
                     {
@@ -71,9 +72,27 @@ public class appleAngler : MonoBehaviour
                 break;
             case 2:
                 float rotateRad2 = Mathf.Deg2Rad * transform.eulerAngles.z;
-                
+                if (growing)
+                {
+                    Debug.Log("it is growing");
+                    transform.localScale += new Vector3(0.005f,0,0);
+                    if (transform.localScale.x >= 2)
+                    {
+                        growing = false;
+                    }
+                }
+                else
+                {
+                    transform.localScale += new Vector3(-0.005f, 0, 0);
+                    if (transform.localScale.x <= 1)
+                    {
+                        growing = true;
+                    }
+                }
                 if (Input.GetKeyDown("space"))
                 {
+                    forceToUse = (transform.localScale.x-1) * 600;
+                    Debug.Log("force is: " + forceToUse + ", scale was: " + (transform.localScale.x-1));
                     rb2D.AddForce(new Vector2(forceToUse * Mathf.Cos(rotateRad2) + GameObject.Find("Apple").transform.position.x, forceToUse * Mathf.Sin(rotateRad2) + +GameObject.Find("Apple").transform.position.y), ForceMode2D.Force);
                     aimMode = 0;
                     Debug.Log("Fire!");
