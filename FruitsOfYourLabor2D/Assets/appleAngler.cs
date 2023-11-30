@@ -54,7 +54,7 @@ public class appleAngler : MonoBehaviour
                     if (transform.eulerAngles.z >= 180)
                     {
                         rotatingLeft = false;
-                        Debug.Log("Now rotating right... vector is " + transform.eulerAngles.z);
+                        //Debug.Log("Now rotating right... vector is " + transform.eulerAngles.z);
                     }
                 }
                 else
@@ -74,7 +74,7 @@ public class appleAngler : MonoBehaviour
                 float rotateRad2 = Mathf.Deg2Rad * transform.eulerAngles.z;
                 if (growing)
                 {
-                    Debug.Log("it is growing");
+                    //Debug.Log("it is growing");
                     transform.localScale += new Vector3(0.005f,0,0);
                     if (transform.localScale.x >= 2)
                     {
@@ -92,10 +92,10 @@ public class appleAngler : MonoBehaviour
                 if (Input.GetKeyDown("space"))
                 {
                     forceToUse = (transform.localScale.x-1) * 600;
-                    Debug.Log("force is: " + forceToUse + ", scale was: " + (transform.localScale.x-1));
+                    //Debug.Log("force is: " + forceToUse + ", scale was: " + (transform.localScale.x-1));
                     rb2D.AddForce(new Vector2(forceToUse * Mathf.Cos(rotateRad2) + GameObject.Find("Apple").transform.position.x, forceToUse * Mathf.Sin(rotateRad2) + +GameObject.Find("Apple").transform.position.y), ForceMode2D.Force);
                     aimMode = 0;
-                    Debug.Log("Fire!");
+                    //Debug.Log("Fire!");
                 }
                 break;
             default:
