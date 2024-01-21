@@ -2129,6 +2129,10 @@ PrefabInstance:
       propertyPath: Message
       value: Really, he just left that in the game???
       objectReference: {fileID: 0}
+    - target: {fileID: 6980287679436879802, guid: 2662a6310a6dfe74eb812038c9de7d73, type: 3}
+      propertyPath: AppleDialogue
+      value: 
+      objectReference: {fileID: 465159435}
     - target: {fileID: 6980287679436879803, guid: 2662a6310a6dfe74eb812038c9de7d73, type: 3}
       propertyPath: m_Name
       value: DialogueTrigger (1)
